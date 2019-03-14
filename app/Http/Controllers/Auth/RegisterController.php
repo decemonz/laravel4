@@ -55,6 +55,11 @@ class RegisterController extends Controller
         ]);
     }
 
+    protected function registered(Request $request,$user)
+    {
+      return $user;
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
