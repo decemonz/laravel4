@@ -3,7 +3,7 @@
     <RouterLink class="navbar__brand" to="/">
       Vuesplash
     </RouterLink>
-    <div class="navbar__menu">
+    <div v-if="isLogin" class="navbar__menu">
       <div class="navbar__item">
         <button class="button">
           <i class="icon ion-md-add"></i>
@@ -11,10 +11,10 @@
         </button>
 
       </div>
-      <span class="navbar__item">
-        username
+      <span v-if="isLogin" class="navbar__item">
+        {{username}}
       </span>
-      <div class="navbar__item">
+      <div v-else class="navbar__item">
         <RouterLink class="button button__link" to="/login">
           Login/Register
         </RouterLink>
@@ -26,3 +26,17 @@
   </nav>
 
 </template>
+<script>
+export default{
+  computed:{
+    isLogin(){
+      return this.$store.getters['auth/check']
+    },
+    username(){
+      return this.$store.getters['auth/username']
+    }
+
+  }
+}
+
+</script>
